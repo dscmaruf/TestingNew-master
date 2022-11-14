@@ -1,23 +1,11 @@
 node('master') 
 {
-    stage('Continuous Download') 
+    stage('Continuous Download Products') 
 	{
-    git 'https://github.com/UjjalKrRoy/devops1.git'
+    git 'https://github.com/dscmaruf/devops1-master.git'
 	}
-    stage('Continuous Build') 
+    stage('Continuous Build Products') 
 	{
     sh label: '', script: 'mvn package'
 	}
-    stage('Continuous Deployment') 
-	{
-sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/ScriptedPipeline/webapp/target/webapp.war   ubuntu@172.31.26.217:/var/lib/tomcat8/webapps/qaenv.war'
 	}
-    stage('Continuous Testing') 
-	{
-              sh label: '', script: 'echo "Testing Passed"'
-	}
-    stage('Continuous Delivery') 
-	{
-sh label: '', script: 'scp /home/ubuntu/.jenkins/workspace/ScriptedPipeline/webapp/target/webapp.war   ubuntu@172.31.22.88:/var/lib/tomcat8/webapps/prodenv.war'
-	}
-}
